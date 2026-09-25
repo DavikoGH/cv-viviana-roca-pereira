@@ -15,9 +15,9 @@ export const EducationSection: React.FC = () => {
           <span className="material-icons text-sm">school</span>
           <span>Educación & Títulos</span>
         </div>
-        <h2 className="text-xl sm:text-3xl md:text-4xl font-black font-montserrat tracking-tight text-white uppercase flex flex-wrap items-baseline gap-2 sm:gap-3">
-          <span className="text-xl sm:text-3xl md:text-4xl">Formación</span>
-          <span className="font-script text-2xl sm:text-3xl md:text-4xl text-cyan-400 font-normal normal-case neon-glow-blue">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-black font-montserrat tracking-tight text-white uppercase flex flex-wrap items-baseline gap-2 sm:gap-3">
+          <span className="text-2xl sm:text-3xl md:text-4xl">Formación</span>
+          <span className="font-script text-[28px] sm:text-3xl md:text-4xl text-cyan-400 font-normal normal-case neon-glow-blue">
             Académica
           </span>
         </h2>
@@ -25,16 +25,11 @@ export const EducationSection: React.FC = () => {
 
       {/* Education Cards Grid */}
       <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-6">
-        {educationData.map((edu: EducationItem, idx: number) => {
-          const isCeicom = edu.institution.includes('CEICOM');
-          const isAmericano = edu.institution.includes('Americano');
-
+        {educationData.map((edu: EducationItem) => {
           return (
             <div
               key={edu.id}
-              className={`p-6 rounded-2xl bg-gradient-to-br from-white/[0.06] to-white/[0.015] border border-white/10 hover:border-pink-500/40 transition-all duration-300 shadow-xl flex flex-col justify-between ${
-                idx === 0 ? 'md:col-span-2' : ''
-              }`}
+              className="p-6 rounded-2xl bg-gradient-to-br from-white/[0.06] to-white/[0.015] border border-white/10 hover:border-pink-500/40 transition-all duration-300 shadow-xl flex flex-col justify-between md:col-span-2"
             >
               <div>
                 {/* Year and degree type */}
@@ -54,8 +49,8 @@ export const EducationSection: React.FC = () => {
                 </h3>
 
                 {/* Institution */}
-                <p className="text-sm font-oswald text-cyan-300 tracking-wide font-medium mt-1 flex items-center gap-1.5">
-                  <span className="material-icons text-sm text-[#00d2ff]">account_balance</span>
+                <p className="text-sm md:text-[16px] lg:text-sm font-oswald text-cyan-300 tracking-wide font-medium mt-1 flex items-center gap-1.5">
+                  <span className="material-icons text-sm md:text-base lg:text-sm text-[#00d2ff]">account_balance</span>
                   {edu.institution}
                 </p>
 
@@ -67,16 +62,16 @@ export const EducationSection: React.FC = () => {
 
               {/* Skills acquired during study */}
               <div className="mt-5 pt-4 border-t border-white/5">
-                <span className="text-[11px] font-montserrat uppercase tracking-wider text-zinc-400 font-semibold block mb-2">
+                <span className="text-[13.7px] md:text-[13.7px] lg:text-[13.7px] xl:text-[11px] font-montserrat uppercase tracking-wider text-zinc-400 font-semibold block mb-2">
                   Competencias Adquiridas:
                 </span>
                 <div className="flex flex-wrap gap-2">
                   {edu.skillsAcquired.map((skill, sIdx) => (
                     <span
                       key={sIdx}
-                      className="px-2.5 py-1 rounded-lg bg-white/[0.03] border border-white/10 text-xs text-zinc-300 font-roboto flex items-center gap-1"
+                      className="px-2.5 py-1 rounded-lg bg-white/[0.03] border border-white/10 text-xs md:text-[14.7px] lg:text-[14.7px] xl:text-xs text-zinc-300 font-roboto flex items-center gap-1.5"
                     >
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#ff007f]" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#ff007f] shrink-0" />
                       {skill}
                     </span>
                   ))}
@@ -85,23 +80,6 @@ export const EducationSection: React.FC = () => {
             </div>
           );
         })}
-      </div>
-
-      {/* Distinction Banner */}
-      <div className="p-5 rounded-2xl bg-gradient-to-r from-[#ff007f]/15 via-[#7928ca]/20 to-[#00d2ff]/15 border border-white/15 backdrop-blur-md flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div className="flex items-center gap-3">
-          <div className="w-12 h-12 rounded-xl bg-gradient-to-tr from-[#ff007f] to-[#00d2ff] flex items-center justify-center text-white shadow-lg shrink-0">
-            <span className="material-icons text-2xl">workspace_premium</span>
-          </div>
-          <div>
-            <h4 className="font-montserrat font-bold text-sm sm:text-base text-white">
-              Perfil Integral &middot; Gestión + Presencia Escénica
-            </h4>
-            <p className="text-xs text-zinc-300 font-roboto">
-              La formación técnica en secretariado administrativo sumada al modelaje profesional confiere un alto estándar de organización, dicción y protocolo comercial.
-            </p>
-          </div>
-        </div>
       </div>
     </div>
   );

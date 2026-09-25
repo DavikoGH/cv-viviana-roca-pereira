@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { SectionType } from './types/cv';
 import { personalInfo } from './data/cvData';
@@ -11,14 +11,47 @@ import { SkillsSection } from './components/SkillsSection';
 import { CvModal } from './components/CvModal';
 import { ContactModal } from './components/ContactModal';
 
+const ALL_MENU_SECTIONS: SectionType[] = [
+  'home',
+  'experiencia',
+  'formacion',
+  'cursos',
+  'habilidades',
+];
+
 export default function App() {
   const [activeSection, setActiveSection] = useState<SectionType>('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const [isCvModalOpen, setIsCvModalOpen] = useState<boolean>(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState<boolean>(false);
 
+  // Limpiar cualquier residuo previo en almacenamiento del navegador
+  useEffect(() => {
+    try {
+      sessionStorage.removeItem('vr_visited_sections');
+      sessionStorage.removeItem('vr_clicked_sections');
+      localStorage.removeItem('vr_visited_sections');
+      localStorage.removeItem('vr_clicked_sections');
+    } catch {
+      // Ignorar fallback
+    }
+  }, []);
+
+  // Rastreo de opciones del menú visitadas por el usuario:
+  // Inicia con 'home' ya que el usuario ya está visualizando HOME al entrar a la app.
+  // De este modo, en cuanto el usuario hace clic en las demás opciones (Experiencia, Formación, Cursos y Habilidades),
+  // el logo aparece de inmediato sin tener que volver a pulsar la opción HOME.
+  const [clickedSections, setClickedSections] = useState<Set<SectionType>>(() => new Set<SectionType>(['home']));
+
+  const hasVisitedAll = ALL_MENU_SECTIONS.every((sec) => clickedSections.has(sec));
+
   const handleSelectSection = (section: SectionType) => {
     setActiveSection(section);
+    setClickedSections((prev) => {
+      const next = new Set(prev);
+      next.add(section);
+      return next;
+    });
     setMobileMenuOpen(false);
   };
 
@@ -144,6 +177,26 @@ export default function App() {
                 </nav>
               </div>
 
+              {/* Bloque especial móvil cuando ha visitado todas las secciones: solo logo vinculado */}
+              {hasVisitedAll && (
+                <div className="my-3 flex items-center justify-center">
+                  <a
+                    href="https://cuvidig.netlify.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block transition-transform duration-300 hover:scale-110 cursor-pointer p-1"
+                    title="Ir a https://cuvidig.netlify.app/"
+                    aria-label="Ir a CuviDig"
+                  >
+                    <img
+                      src="/cv_logo_blanco.svg"
+                      alt="Logo CV"
+                      className="h-10 w-auto object-contain drop-shadow-[0_0_12px_rgba(255,255,255,0.7)]"
+                    />
+                  </a>
+                </div>
+              )}
+
               <div className="pt-4 border-t border-white/10 flex flex-col gap-2">
                 <button
                   type="button"
@@ -169,6 +222,7 @@ export default function App() {
             activeSection={activeSection}
             onSelectSection={handleSelectSection}
             personalInfo={personalInfo}
+            hasVisitedAll={hasVisitedAll}
             onOpenCvModal={() => setIsCvModalOpen(true)}
             onOpenContactModal={() => setIsContactModalOpen(true)}
           />

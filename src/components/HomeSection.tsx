@@ -16,8 +16,8 @@ const GlamourPhotoCard: React.FC<{ personalInfo: PersonalInfo; isMobile?: boolea
   <div
     className={`relative w-full ${
       isMobile
-        ? 'max-w-[290px] sm:max-w-[340px]'
-        : 'max-w-[320px] sm:max-w-[360px] lg:max-w-[390px] xl:max-w-[420px] 2xl:max-w-[440px] max-h-[calc(90vh-80px)]'
+        ? 'max-w-[290px] sm:max-w-[340px] md:max-w-[391px]'
+        : 'max-w-[320px] sm:max-w-[360px] lg:max-w-[290px] xl:max-w-[400px] 2xl:max-w-[440px] max-h-[calc(90vh-80px)]'
     } aspect-[3/4] rounded-3xl overflow-hidden p-2 border-2 border-white/15 bg-gradient-to-b from-[#111628] via-[#090b14] to-[#150a1c] shadow-2xl neon-box-blue group`}
   >
     {/* Background dual-lighting atmosphere: Cobalt Blue on left, Hot Magenta on right */}
@@ -47,10 +47,10 @@ const GlamourPhotoCard: React.FC<{ personalInfo: PersonalInfo; isMobile?: boolea
 
       {/* OVERLAY NEON SIGNATURE ON THE PHOTO (Viviana in handwritten neon script font) */}
       <div className="absolute bottom-[10%] sm:bottom-[12%] inset-x-2 sm:inset-x-4 z-20 text-center select-none">
-        <span className="font-script text-[62px] sm:text-[78px] xl:text-[90px] text-white neon-glow-pink inline-block origin-left -rotate-[10deg] leading-none drop-shadow-[0_0_25px_#ff007f]">
+        <span className="font-script text-[62px] sm:text-[78px] md:text-[89px] xl:text-[90px] text-white neon-glow-pink inline-block origin-left -rotate-[10deg] leading-none drop-shadow-[0_0_25px_#ff007f]">
           Viviana
         </span>
-        <span className="font-oswald text-[24px] sm:text-[30px] xl:text-[33px] tracking-[0.18em] font-bold text-cyan-300 uppercase neon-glow-blue block mt-1 leading-tight">
+        <span className="font-oswald text-[24px] sm:text-[30px] md:text-[34.5px] xl:text-[33px] tracking-[0.18em] font-bold text-cyan-300 uppercase neon-glow-blue block mt-1 leading-tight">
           ROCA PEREIRA
         </span>
       </div>
@@ -60,10 +60,12 @@ const GlamourPhotoCard: React.FC<{ personalInfo: PersonalInfo; isMobile?: boolea
 
 export const HomeSection: React.FC<HomeSectionProps> = ({
   personalInfo,
+  onOpenCvModal,
+  onOpenContactModal,
   onNavigateTo,
 }) => {
   return (
-    <div className="relative w-full min-h-full lg:h-full flex flex-col justify-start lg:justify-center p-3.5 sm:p-5 lg:px-8 lg:py-3 pb-10 lg:pb-3 bg-[#070912] overflow-x-hidden">
+    <div className="relative w-full min-h-full lg:h-full flex flex-col justify-start lg:justify-center p-3.5 sm:p-5 lg:px-8 lg:py-3 pb-10 lg:pb-3 bg-[#070912] overflow-x-hidden overflow-y-auto">
       {/* Dynamic Background Atmosphere - Inspired by Image 1 Party / Neon Glow */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {/* Electric Blue stage glow top-left / center */}
@@ -95,15 +97,15 @@ export const HomeSection: React.FC<HomeSectionProps> = ({
         />
       </div>
 
-      {/* MAIN HERO CONTENT (SPLIT: LEFT INFO & TYPOGRAPHY, RIGHT FULL-BODY GLAMOUR PHOTO) */}
-      <div className="relative z-10 flex flex-col lg:flex-row gap-6 lg:gap-8 items-start lg:items-stretch justify-between flex-1 min-h-0">
-        {/* LEFT COLUMN (ON MOBILE: CONTAINS DISPONIBLE -> PHOTO -> CARGO -> BIO -> ESPECIALIDADES) */}
-        <div className="flex-1 min-w-0 flex flex-col justify-between lg:h-full space-y-4 lg:space-y-0 w-full">
-          {/* TOP GROUP: Aligned at the upper level of the photograph */}
-          <div className="flex flex-col space-y-4 sm:space-y-[18px]">
+      {/* MAIN HERO CONTENT */}
+      <div className="relative z-10 flex flex-col justify-center flex-1 min-h-0 w-full h-full">
+        {/* UPPER ROW: PERFIL PROFESIONAL & SPECS (LEFT) AND FOTOGRAFÍA (RIGHT) */}
+        <div className="flex flex-col lg:flex-row gap-5 lg:gap-8 items-start lg:items-stretch justify-between w-full flex-1 min-h-0">
+          {/* LEFT COLUMN: STATUS, CARGO, BIO, MEDIDAS, BOTONES, ESPECIALIDADES */}
+          <div className="flex-1 min-w-0 flex flex-col space-y-3 sm:space-y-3.5 w-full lg:justify-between">
             {/* 1. TOP STATUS BADGE: "Disponible para Campañas 2025 - 2026" */}
-            <div className="flex items-center justify-center border-b border-white/10 pb-2.5 w-full">
-              <div className="inline-flex items-center gap-2 px-2.5 sm:px-3.5 py-1 rounded-full bg-emerald-950/40 border border-emerald-500/40 backdrop-blur-md text-emerald-400 text-[11.5px] sm:text-[13px] lg:text-[14px] font-montserrat shadow-sm shadow-emerald-500/20 max-w-full">
+            <div className="flex items-center justify-center border-b border-white/10 pb-2 w-full">
+              <div className="inline-flex items-center gap-2 px-2.5 sm:px-3.5 py-1 rounded-full bg-emerald-950/40 border border-emerald-500/40 backdrop-blur-md text-emerald-400 text-[11.5px] sm:text-[13px] lg:text-[12.7px] xl:text-[14px] font-montserrat shadow-sm shadow-emerald-500/20 max-w-full">
                 <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
                 <span className="font-semibold tracking-wide whitespace-nowrap">
                   Disponible para Campañas 2025 - 2026
@@ -116,8 +118,8 @@ export const HomeSection: React.FC<HomeSectionProps> = ({
               <GlamourPhotoCard personalInfo={personalInfo} isMobile />
             </div>
 
-            {/* 3. CARGO: "Modelo Independiente" (BELOW PHOTO IN MOBILE, BELOW DISPONIBLE IN DESKTOP) */}
-            <div className="flex flex-col sm:flex-row items-center justify-center text-center gap-2 sm:gap-2.5 w-full">
+            {/* 3. CARGO: "Modelo Independiente" (BELOW PHOTO IN MOBILE & TABLET, BELOW DISPONIBLE IN DESKTOP) */}
+            <div className="flex flex-col xl:flex-row items-center justify-center text-center gap-2 sm:gap-2.5 w-full">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-gradient-to-r from-[#ff007f]/25 to-[#00d2ff]/20 border border-[#ff007f]/50 shadow-md shadow-[#ff007f]/20">
                 <span className="material-icons text-sm text-[#ff007f]">
                   stars
@@ -137,52 +139,80 @@ export const HomeSection: React.FC<HomeSectionProps> = ({
                 <span className="material-icons text-base">person</span>
                 <span>Perfil Profesional</span>
               </div>
-              <p className="text-[13.5px] sm:text-[15px] text-zinc-200 font-roboto leading-relaxed text-justify">
+              <p className="text-[13.5px] sm:text-[14.5px] text-zinc-200 font-roboto leading-relaxed text-justify">
                 {personalInfo.bio}
               </p>
+            </div>
 
-              {/* Key Modeling Specs / Medidas */}
-              <div className="mt-3.5 pt-3 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-center">
-                <div className="p-2 rounded-xl bg-black/40 border border-white/5 flex flex-col justify-center items-center">
-                  <span className="text-[12px] text-zinc-300 uppercase font-montserrat font-medium block">Estatura</span>
-                  <span className="text-[23.5px] sm:text-[25px] font-oswald font-bold text-cyan-300 leading-tight mt-0.5">{personalInfo.height}</span>
+            {/* 5. SECCIÓN DE MEDIDAS, BOTONES Y ESPECIALIDADES (COLOCADA DEBAJO DEL PERFIL PROFESIONAL) */}
+            <div className="w-full flex-1 flex flex-col gap-2.5 sm:gap-3 pt-1">
+              {/* MEDIDAS Y ESPECIFICACIONES */}
+              <div className="w-full grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-4 gap-2.5 text-center">
+                <div className="p-2 sm:p-2.5 rounded-xl bg-black/40 border border-white/10 flex flex-col justify-center items-center shadow-md hover:border-cyan-400/30 transition-colors">
+                  <span className="text-[11px] sm:text-[12px] text-zinc-300 uppercase font-montserrat font-medium block">Estatura</span>
+                  <span className="text-[20px] sm:text-[23.5px] xl:text-[25px] font-oswald font-bold text-cyan-300 leading-tight mt-0.5">{personalInfo.height}</span>
                 </div>
-                <div className="p-2 rounded-xl bg-black/40 border border-white/5 flex flex-col justify-center items-center">
-                  <span className="text-[12px] text-zinc-300 uppercase font-montserrat font-medium block">Medidas</span>
-                  <span className="text-[23.5px] sm:text-[25px] font-oswald font-bold text-pink-300 leading-tight mt-0.5">{personalInfo.measurements}</span>
+                <div className="p-2 sm:p-2.5 rounded-xl bg-black/40 border border-white/10 flex flex-col justify-center items-center shadow-md hover:border-pink-400/30 transition-colors">
+                  <span className="text-[11px] sm:text-[12px] text-zinc-300 uppercase font-montserrat font-medium block">Medidas</span>
+                  <span className="text-[20px] sm:text-[23.5px] xl:text-[25px] font-oswald font-bold text-pink-300 leading-tight mt-0.5">{personalInfo.measurements}</span>
                 </div>
-                <div className="p-2 rounded-xl bg-black/40 border border-white/5 flex flex-col justify-center items-center">
-                  <span className="text-[12px] text-zinc-300 uppercase font-montserrat font-medium block">Calzado</span>
-                  <span className="text-[23.5px] sm:text-[25px] font-oswald font-bold text-cyan-300 leading-tight mt-0.5">{personalInfo.shoeSize}</span>
+                <div className="p-2 sm:p-2.5 rounded-xl bg-black/40 border border-white/10 flex flex-col justify-center items-center shadow-md hover:border-cyan-400/30 transition-colors">
+                  <span className="text-[11px] sm:text-[12px] text-zinc-300 uppercase font-montserrat font-medium block">Calzado</span>
+                  <span className="text-[20px] sm:text-[23.5px] xl:text-[25px] font-oswald font-bold text-cyan-300 leading-tight mt-0.5">{personalInfo.shoeSize}</span>
                 </div>
-                <div className="p-2 rounded-xl bg-black/40 border border-white/5 flex flex-col justify-center items-center">
-                  <span className="text-[12px] text-zinc-300 uppercase font-montserrat font-medium block truncate">Ojos / Cabello</span>
-                  <span className="text-[23.5px] sm:text-[25px] font-oswald font-bold text-white leading-tight mt-0.5 truncate block">{personalInfo.eyeColor}</span>
+                <div className="p-2 sm:p-2.5 rounded-xl bg-black/40 border border-white/10 flex flex-col justify-center items-center shadow-md hover:border-purple-400/30 transition-colors">
+                  <span className="text-[11px] sm:text-[12px] text-zinc-300 uppercase font-montserrat font-medium block truncate">Ojos / Cabello</span>
+                  <span className="text-[17px] sm:text-[20px] xl:text-[23px] font-oswald font-bold text-white leading-tight mt-0.5 truncate block">{personalInfo.eyeColor}</span>
                 </div>
+              </div>
+
+              {/* BOTONES DE ACCIÓN: CONTACTAR Y CV PDF CENTRADOS */}
+              <div className="w-full flex items-center justify-center gap-3 sm:gap-4 mt-0.5 lg:mt-auto">
+                <button
+                  type="button"
+                  onClick={onOpenContactModal}
+                  className="py-2 px-5 sm:px-6 rounded-xl bg-white/[0.04] hover:bg-gradient-to-r hover:from-[#ff007f]/20 hover:to-[#00d2ff]/20 border border-cyan-400/40 hover:border-cyan-300 text-cyan-300 hover:text-white text-xs sm:text-sm font-montserrat font-semibold tracking-wide transition-all duration-300 flex items-center justify-center gap-2 shadow-md hover:shadow-cyan-500/20 cursor-pointer group"
+                >
+                  <span className="material-icons text-base sm:text-lg text-cyan-400 group-hover:rotate-12 transition-transform">
+                    chat
+                  </span>
+                  <span>Contactar</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={onOpenCvModal}
+                  className="py-2 px-5 sm:px-6 rounded-xl bg-gradient-to-r from-[#ff007f] via-[#c026d3] to-[#7928ca] hover:from-[#ff007f] hover:to-[#00d2ff] border border-white/20 text-white text-xs sm:text-sm font-montserrat font-bold tracking-wider uppercase transition-all duration-300 flex items-center justify-center gap-2 shadow-md shadow-pink-900/30 hover:shadow-pink-500/30 cursor-pointer group"
+                >
+                  <span className="material-icons text-base sm:text-lg group-hover:translate-y-0.5 transition-transform">
+                    download
+                  </span>
+                  <span>CV PDF</span>
+                </button>
+              </div>
+
+              {/* SECTOR DE ESPECIALIDADES AL FINAL */}
+              <div className="w-full pt-2.5 pb-1 border-t border-white/10 flex flex-wrap items-center justify-center sm:justify-start gap-x-3 gap-y-1 text-[13.5px] sm:text-[14px] text-zinc-400 font-montserrat">
+                <span className="text-zinc-500 font-semibold uppercase tracking-wider text-[12.5px] sm:text-[13px]">Especialidades:</span>
+                <span className="text-zinc-300 font-medium hover:text-cyan-300 cursor-pointer transition-colors" onClick={() => onNavigateTo('experiencia')}>
+                  Ferias Internacionales
+                </span>
+                <span className="text-zinc-600">&bull;</span>
+                <span className="text-zinc-300 font-medium hover:text-pink-300 cursor-pointer transition-colors" onClick={() => onNavigateTo('experiencia')}>
+                  Pasarela de Moda
+                </span>
+                <span className="text-zinc-600">&bull;</span>
+                <span className="text-zinc-300 font-medium hover:text-cyan-300 cursor-pointer transition-colors" onClick={() => onNavigateTo('experiencia')}>
+                  Comerciales BTL
+                </span>
               </div>
             </div>
           </div>
 
-          {/* 5. ESPECIALIDADES: Colocado en la parte inferior */}
-          <div className="w-full pt-3 pb-1 border-t border-white/10 flex flex-wrap items-center gap-x-3 gap-y-1 text-[14px] text-zinc-400 font-montserrat mt-auto lg:mt-0">
-            <span className="text-zinc-500 font-semibold uppercase tracking-wider text-[13px]">Especialidades:</span>
-            <span className="text-zinc-300 font-medium hover:text-cyan-300 cursor-pointer transition-colors" onClick={() => onNavigateTo('experiencia')}>
-              Ferias Internacionales
-            </span>
-            <span className="text-zinc-600">&bull;</span>
-            <span className="text-zinc-300 font-medium hover:text-pink-300 cursor-pointer transition-colors" onClick={() => onNavigateTo('experiencia')}>
-              Pasarela de Moda
-            </span>
-            <span className="text-zinc-600">&bull;</span>
-            <span className="text-zinc-300 font-medium hover:text-cyan-300 cursor-pointer transition-colors" onClick={() => onNavigateTo('experiencia')}>
-              Comerciales BTL
-            </span>
+          {/* RIGHT COLUMN: DESKTOP & TABLET HORIZONTAL FULL BODY GLAMOUR PHOTOGRAPH (NO ELEMENTS UNDER IT) */}
+          <div className="hidden lg:flex flex-shrink-0 relative justify-end items-center self-center">
+            <GlamourPhotoCard personalInfo={personalInfo} />
           </div>
-        </div>
-
-        {/* RIGHT COLUMN: DESKTOP ONLY FULL BODY GLAMOUR PHOTOGRAPH */}
-        <div className="hidden lg:flex flex-shrink-0 relative justify-end items-start">
-          <GlamourPhotoCard personalInfo={personalInfo} />
         </div>
       </div>
     </div>

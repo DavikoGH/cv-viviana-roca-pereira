@@ -18,22 +18,22 @@ export const CoursesSection: React.FC = () => {
       <div className="absolute bottom-10 right-10 w-80 h-80 bg-[#00d2ff]/10 rounded-full blur-[100px] pointer-events-none" />
 
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-white/10 pb-6 relative z-10">
+      <div className="flex flex-col xl:flex-row xl:items-end justify-between gap-4 border-b border-white/10 pb-6 relative z-10">
         <div>
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/40 border border-emerald-500/30 text-emerald-300 text-xs font-oswald tracking-widest uppercase mb-2">
             <span className="material-icons text-sm">menu_book</span>
             <span>Capacitaciones Continuas</span>
           </div>
-          <h2 className="text-xl sm:text-3xl md:text-4xl font-black font-montserrat tracking-tight text-white uppercase flex flex-wrap items-baseline gap-2 sm:gap-3">
-            <span className="text-xl sm:text-3xl md:text-4xl">Cursos y</span>
-            <span className="font-script text-2xl sm:text-3xl md:text-4xl text-[#ff007f] font-normal normal-case neon-glow-pink">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-black font-montserrat tracking-tight text-white uppercase flex flex-wrap items-baseline gap-2 sm:gap-3">
+            <span className="text-2xl sm:text-3xl md:text-4xl">Cursos y</span>
+            <span className="font-script text-[28px] sm:text-3xl md:text-4xl text-[#ff007f] font-normal normal-case neon-glow-pink">
               Certificaciones
             </span>
           </h2>
         </div>
 
         {/* Categories */}
-        <div className="hidden sm:flex flex-wrap gap-1.5 p-1 rounded-xl bg-black/40 border border-white/10 backdrop-blur-md">
+        <div className="hidden xl:flex flex-wrap gap-1.5 p-1 rounded-xl bg-black/40 border border-white/10 backdrop-blur-md">
           {categories.map((cat) => (
             <button
               key={cat}
@@ -57,7 +57,7 @@ export const CoursesSection: React.FC = () => {
           return (
             <div
               key={course.id}
-              className="p-5 rounded-2xl bg-gradient-to-br from-white/[0.05] to-white/[0.015] border border-white/10 hover:border-cyan-400/40 transition-all duration-300 shadow-lg hover:shadow-cyan-950/20 group flex flex-col justify-between"
+              className="p-5 rounded-2xl bg-gradient-to-br from-white/[0.05] to-white/[0.015] border border-white/10 hover:border-cyan-400/40 transition-all duration-300 shadow-lg hover:shadow-cyan-950/20 group flex flex-col justify-between md:col-span-2 lg:col-span-1"
             >
               <div>
                 {/* Header with Date and Category */}
@@ -78,13 +78,13 @@ export const CoursesSection: React.FC = () => {
                 </h3>
 
                 {/* Institution */}
-                <p className="mt-1.5 text-xs font-oswald text-zinc-300 tracking-wide flex items-center gap-1.5 font-medium">
-                  <span className="material-icons text-xs text-[#00d2ff]">verified</span>
+                <p className="mt-1.5 text-[13.3px] md:text-[15px] lg:text-[14.7px] xl:text-xs font-oswald text-zinc-300 tracking-wide flex items-center gap-1.5 font-medium">
+                  <span className="material-icons text-sm md:text-sm lg:text-sm xl:text-xs text-[#00d2ff]">verified</span>
                   {course.institution}
                 </p>
 
                 {/* Description */}
-                <p className="mt-2.5 text-xs text-zinc-400 font-roboto leading-relaxed">
+                <p className="mt-2.5 text-[13.3px] md:text-xs lg:text-[14.7px] xl:text-xs text-zinc-400 font-roboto leading-relaxed">
                   {course.description}
                 </p>
               </div>

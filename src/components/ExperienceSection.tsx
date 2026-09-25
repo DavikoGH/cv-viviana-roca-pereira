@@ -18,22 +18,22 @@ export const ExperienceSection: React.FC = () => {
       <div className="absolute bottom-10 left-10 w-96 h-96 bg-[#ff007f]/10 rounded-full blur-[100px] pointer-events-none" />
 
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-white/10 pb-6 relative z-10">
+      <div className="flex flex-col xl:flex-row xl:items-end justify-between gap-4 border-b border-white/10 pb-6 relative z-10">
         <div>
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 text-xs font-oswald tracking-widest uppercase mb-2">
             <span className="material-icons text-sm">work</span>
             <span>Trayectoria Profesional</span>
           </div>
-          <h2 className="text-xl sm:text-3xl md:text-4xl font-black font-montserrat tracking-tight text-white uppercase flex flex-wrap items-baseline gap-2 sm:gap-3">
-            <span className="text-xl sm:text-3xl md:text-4xl">Experiencia</span>
-            <span className="font-script text-2xl sm:text-3xl md:text-4xl text-[#ff007f] font-normal normal-case neon-glow-pink">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-black font-montserrat tracking-tight text-white uppercase flex flex-wrap items-baseline gap-2 sm:gap-3">
+            <span className="text-2xl sm:text-3xl md:text-4xl">Experiencia</span>
+            <span className="font-script text-[28px] sm:text-3xl md:text-4xl text-[#ff007f] font-normal normal-case neon-glow-pink">
               Laboral
             </span>
           </h2>
         </div>
 
         {/* Filter Pills */}
-        <div className="hidden sm:flex flex-wrap gap-1.5 p-1 rounded-xl bg-black/40 border border-white/10 backdrop-blur-md">
+        <div className="hidden xl:flex flex-wrap gap-1.5 p-1 rounded-xl bg-black/40 border border-white/10 backdrop-blur-md">
           {categories.map((cat) => (
             <button
               key={cat}
@@ -87,7 +87,7 @@ export const ExperienceSection: React.FC = () => {
                     </span>
 
                     {/* Category tag */}
-                    <span className="px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-[13px] text-zinc-300 font-montserrat font-medium">
+                    <span className="px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-[13px] lg:text-[14.3px] xl:text-[13px] text-zinc-300 font-montserrat font-medium">
                       {exp.type}
                     </span>
                   </div>
@@ -123,13 +123,13 @@ export const ExperienceSection: React.FC = () => {
 
               {/* Bullet highlights */}
               <div className="mt-4 pt-3 border-t border-white/5 space-y-1.5">
-                <span className="text-[11px] font-montserrat uppercase tracking-wider text-zinc-400 font-semibold block mb-2">
+                <span className="text-[11px] lg:text-[13px] xl:text-[11px] font-montserrat uppercase tracking-wider text-zinc-400 font-semibold block mb-2">
                   Logros y Funciones Principales:
                 </span>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   {exp.highlights.map((highlight, hIdx) => (
-                    <div key={hIdx} className="flex items-start gap-2 text-xs text-zinc-300 font-roboto">
-                      <span className="material-icons text-sm text-[#00d2ff] shrink-0 mt-0.5">
+                    <div key={hIdx} className="flex items-start gap-2 text-xs lg:text-[13.5px] xl:text-xs text-zinc-300 font-roboto">
+                      <span className="material-icons text-sm lg:text-base xl:text-sm text-[#00d2ff] shrink-0 mt-0.5">
                         check_circle
                       </span>
                       <span>{highlight}</span>

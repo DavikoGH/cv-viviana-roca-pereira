@@ -108,3 +108,18 @@
   animation: pulseSlow 8s ease-in-out infinite;
 }
 
+/* Ocultar badge / widget flotante "Powered by Netlify" (Netlify Drawer / Feedback Widget) */
+#netlify-drawer,
+iframe#netlify-drawer-frame,
+iframe[id*="netlify"],
+[data-netlify-drawer],
+div[class*="netlify-drawer"],
+.netlify-badge {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+

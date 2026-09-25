@@ -1,12 +1,14 @@
 import React from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { SectionType, PersonalInfo } from '../types/cv';
 
 interface SidebarProps {
   activeSection: SectionType;
   onSelectSection: (section: SectionType) => void;
   personalInfo: PersonalInfo;
-  onOpenCvModal: () => void;
-  onOpenContactModal: () => void;
+  hasVisitedAll: boolean;
+  onOpenCvModal?: () => void;
+  onOpenContactModal?: () => void;
 }
 
 interface MenuItem {
@@ -27,8 +29,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
   activeSection,
   onSelectSection,
   personalInfo,
+  hasVisitedAll,
   onOpenCvModal,
-  onOpenContactModal,
 }) => {
   return (
     <aside
@@ -79,7 +81,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       </div>
 
       {/* MIDDLE SECTION: Navigation Menu (occupies ~20% of vertical space, perfectly centered) */}
-      <nav aria-label="Menú principal" className="my-auto py-4 min-h-[22%] flex flex-col justify-center">
+      <nav aria-label="Menú principal" className="my-auto py-3 min-h-[20%] flex flex-col justify-center">
         <ul className="space-y-1.5 w-full">
           {MENU_ITEMS.map((item) => {
             const isActive = activeSection === item.id;
@@ -116,7 +118,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
                   {/* Label */}
                   <span
-                    className={`font-montserrat font-medium text-xs lg:text-sm tracking-wide transition-colors duration-300 ${
+                    className={`font-montserrat font-medium text-xs lg:text-[12.7px] xl:text-sm tracking-wide transition-colors duration-300 ${
                       isActive
                         ? 'text-white font-semibold neon-glow-white'
                         : 'group-hover:text-zinc-200'
@@ -136,34 +138,38 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </ul>
       </nav>
 
-      {/* BOTTOM SECTION: Quick Actions */}
-      <div className="pt-2 border-t border-white/10 flex flex-col gap-2">
-        {/* Quick Contact Button */}
-        <button
-          type="button"
-          onClick={onOpenContactModal}
-          className="w-full py-2 px-2.5 rounded-lg bg-white/[0.03] hover:bg-gradient-to-r hover:from-[#ff007f]/20 hover:to-[#00d2ff]/20 border border-white/10 hover:border-cyan-400/40 text-zinc-300 hover:text-white text-xs font-montserrat font-medium transition-all duration-300 flex items-center justify-center gap-1.5 shadow-sm group"
-        >
-          <span className="material-icons text-sm text-cyan-400 group-hover:rotate-12 transition-transform">
-            chat
-          </span>
-          <span>Contactar</span>
-        </button>
+      {/* BLOQUE JUSTO DEBAJO DEL MENÚ: Solo se muestra cuando visitó todas las secciones */}
+      <AnimatePresence>
+        {hasVisitedAll && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 10 }}
+            transition={{ duration: 0.45, ease: 'easeOut' }}
+            className="my-3 flex items-center justify-center"
+          >
+            <a
+              href="https://cuvidig.netlify.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block transition-transform duration-300 hover:scale-110 cursor-pointer focus:outline-none focus:ring-2 focus:ring-cyan-400 rounded-lg p-1 group"
+              title="Ir a https://cuvidig.netlify.app/"
+              aria-label="Ir a CuviDig"
+            >
+              <img
+                src="/cv_logo_blanco.svg"
+                alt="Logo CV"
+                className="h-10 w-auto object-contain drop-shadow-[0_0_12px_rgba(255,255,255,0.7)] group-hover:drop-shadow-[0_0_18px_#00d2ff] transition-all duration-300"
+              />
+            </a>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-        {/* Quick Download CV Button */}
-        <button
-          type="button"
-          onClick={onOpenCvModal}
-          className="w-full py-2 px-2.5 rounded-lg bg-gradient-to-r from-[#ff007f]/80 to-[#7928ca]/80 hover:from-[#ff007f] hover:to-[#00d2ff] border border-white/20 text-white text-xs font-montserrat font-semibold tracking-wider transition-all duration-300 flex items-center justify-center gap-1.5 shadow-md shadow-pink-900/30 group cursor-pointer"
-        >
-          <span className="material-icons text-sm group-hover:translate-y-0.5 transition-transform">
-            download
-          </span>
-          <span>CV PDF</span>
-        </button>
-
+      {/* BOTTOM SECTION */}
+      <div className="pt-2 border-t border-white/10 flex flex-col items-center shrink-0">
         {/* Social / City micro badge */}
-        <div className="text-center text-[10px] text-zinc-500 font-roboto pt-1">
+        <div className="text-center text-[10px] text-zinc-500 font-roboto py-1">
           Santa Cruz, Bolivia
         </div>
       </div>
